@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Atmel Studio Solution File, Format Version 11.00
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{67BAEE18-5A1B-4558-A5ED-FF955351AFF9}"
+EndProject
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "TFW1_BMS_SERVER_R1", "TFW1_BMS_SERVER_R1\TFW1_BMS_SERVER_R1.cproj", "{12E7E498-19E0-4E9F-928D-2B061661936D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Release|ARM = Release|ARM
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12E7E498-19E0-4E9F-928D-2B061661936D}.Debug|ARM.ActiveCfg = Debug|ARM
+		{12E7E498-19E0-4E9F-928D-2B061661936D}.Debug|ARM.Build.0 = Debug|ARM
+		{12E7E498-19E0-4E9F-928D-2B061661936D}.Release|ARM.ActiveCfg = Release|ARM
+		{12E7E498-19E0-4E9F-928D-2B061661936D}.Release|ARM.Build.0 = Release|ARM
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
