@@ -7,6 +7,8 @@
 #include "bootloader.h"
 #include "defination.h"
 #include "ext_eeprom_1.h"
+#include "FreeRTOS.h"
+#include "task.h"
 
 
 bool gb_download_frame    = false ;
@@ -126,7 +128,7 @@ void Check_Boot_Command(void)
 			break;
 		}
 
-		ethernet_task();               // Handle Ethernet communication
+		vTaskDelay(1);                 // Ethernet is handled by the lwIP/port-502 tasks; call this only from a task (Test_Task)
 
 		if(jsec >=3)
 		{

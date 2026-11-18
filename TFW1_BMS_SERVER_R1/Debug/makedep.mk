@@ -170,3 +170,37 @@ src\network\timer_mgt.c
 
 src\main.c
 
+src\network\tls_diag.c
+
+src\ASF\thirdparty\freertos\freertos-7.3.0\source\list.c
+
+src\ASF\thirdparty\freertos\freertos-7.3.0\source\queue.c
+
+src\ASF\thirdparty\freertos\freertos-7.3.0\source\tasks.c
+
+src\ASF\thirdparty\freertos\freertos-7.3.0\source\timers.c
+
+src\ASF\thirdparty\freertos\freertos-7.3.0\source\portable\gcc\sam_cm4f\port.c
+
+src\ASF\thirdparty\freertos\freertos-7.3.0\source\portable\memmang\heap_4.c
+
+src\ASF\thirdparty\lwip\lwip-port-1.4.1\sam\sys_arch.c
+
+src\RTOS\user_rtos.c
+
+src\RTOS\newlib_lock.c
+
+src\Factory\factory_cmd.c
+
+src\Int_Flash_Driver\int_flash.c
+
+src\network\https_client.c
+
+src\network\tls_client.c
+
+src\network\tls_platform.c
+
+src\network\net_xport.c
+
+src\network\url_parse.c
+

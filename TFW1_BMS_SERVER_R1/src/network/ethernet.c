@@ -89,12 +89,6 @@
 /* Global variable containing MAC configuration (hw addr, IP, GW, etc). */
 struct netif gs_net_if;
 
-/* Timer structure for calling lwIP tmr functions without RTOS. */
-typedef struct timers_info {
-	uint32_t timer;
-	uint32_t timer_interval;
-	void (*timer_func)(void);
-} timers_info_t;
 
 
 Ip_Addr IpAddr;     // Declare the structure variable of Ip_Addr to store the ip address.
@@ -102,60 +96,7 @@ char Port_Num[6];   // Declare the variable to store the port number.
 Sbnt_Msk SbntMsk;   // Declare the structure variable of Sbnt_Msk to store the subnet mask.
 Dflt_Gtwy DfltGtwy; // Declare the structure variable of Dflt_Gtwy to store the default gateway.
 
-/* LwIP tmr functions list. */
-static timers_info_t gs_timers_table[] = {
-	{0, TCP_TMR_INTERVAL, tcp_tmr},
-	{0, IP_TMR_INTERVAL, ip_reass_tmr},
-#if 0
-	/* LWIP_TCP */
-	{0, TCP_FAST_INTERVAL, tcp_fasttmr},
-	{0, TCP_SLOW_INTERVAL, tcp_slowtmr},
-#endif
-	/* LWIP_ARP */
-	{0, ARP_TMR_INTERVAL, etharp_tmr},
-	/* LWIP_DHCP */
-#if LWIP_DHCP
-	{0, DHCP_COARSE_TIMER_MSECS, dhcp_coarse_tmr},
-	{0, DHCP_FINE_TIMER_MSECS, dhcp_fine_tmr},
-#endif
-};
-
-
 char gb_dev_ipAddress[12] = "abc";
-/**
- * \brief Timer management function.
- */
-static void timers_update(void)
-{
-	static uint32_t ul_last_time;
-	uint32_t ul_cur_time, ul_time_diff, ul_idx_timer;
-	timers_info_t *p_tmr_inf;
-
-	ul_cur_time = sys_get_ms();
-	if (ul_cur_time >= ul_last_time) {
-		ul_time_diff = ul_cur_time - ul_last_time;
-	} else {
-		ul_time_diff = 0xFFFFFFFF - ul_last_time + ul_cur_time;
-	}
-
-	if (ul_time_diff) {
-		ul_last_time = ul_cur_time;
-		for (ul_idx_timer = 0;
-			 ul_idx_timer < (sizeof(gs_timers_table) / sizeof(timers_info_t));
-			 ul_idx_timer++) {
-			p_tmr_inf = &gs_timers_table[ul_idx_timer];
-			p_tmr_inf->timer += ul_time_diff;
-			if (p_tmr_inf->timer > p_tmr_inf->timer_interval) {
-				if (p_tmr_inf->timer_func) {
-					p_tmr_inf->timer_func();
-				}
-
-				p_tmr_inf->timer -= p_tmr_inf->timer_interval;
-			}
-		}
-	}
-}
-
 /**
  * \brief Configure network interface driver.
  */
@@ -190,9 +131,10 @@ static void ethernet_configure_interface(void)
 
 #endif
 
-	/* Add data to netif */
+	/* Add data to netif. Threaded lwIP (NO_SYS = 0): received frames are passed
+	 * to the tcpip thread through tcpip_input. */
 	if (NULL == netif_add(&gs_net_if, &x_ip_addr, &x_net_mask, &x_gateway, NULL,
-			ethernetif_init, ethernet_input)) {
+			ethernetif_init, tcpip_input)) {
 		LWIP_ASSERT("NULL == netif_add", 0);
 	}
 
@@ -221,13 +163,16 @@ static void ethernet_configure_interface(void)
  */
 void init_ethernet(void)
 {
-	/* Initialize lwIP. */
-	lwip_init();
+	/* Initialize lwIP in threaded mode: creates the tcpip thread, which also runs
+	 * the lwIP timers (the NO_SYS timer table and ethernet_task() are gone).
+	 * Called before vTaskStartScheduler(), so nothing runs concurrently yet. */
+	tcpip_init(NULL, NULL);
 
-	/* Set hw and IP parameters, initialize MAC too. */
+	/* Set hw and IP parameters, initialize MAC too (the GMAC driver creates its
+	 * own receive task when NO_SYS = 0). */
 	ethernet_configure_interface();
 
-	/* Initialize timer. */
+	/* 1 ms tick for sys_get_ms()/sys_now() (TC0 channel 0). */
 	sys_init_timing();
 }
 
@@ -249,16 +194,3 @@ void status_callback(struct netif *netif)
 	}
 }
 
-/**
- * \brief Process incoming ethernet frames, then update timers.
- */
-void ethernet_task(void)
-{
-
-	/* Poll the network interface driver for incoming ethernet frames. */
-	ethernetif_input(&gs_net_if);
-
-	/* Update the periodic timer. */
-	timers_update();
-
-}

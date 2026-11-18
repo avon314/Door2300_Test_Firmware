@@ -303,7 +303,10 @@ void TC3_Handler(void)
 		if(gb_uart_byte_rec_f == uSET){
 			tc = 0;
 			gb_uart_byte_rec_f = uRESET;
-			rx_str[ch_i++] = gb_uart_rec_byte;
+			if (ch_i < (sizeof(rx_str) - 1u))	// keep room for the '\0' added by Test_Task; long lines (e.g. "SEED <64 hex>") are truncated, not overflowed
+			{
+				rx_str[ch_i++] = gb_uart_rec_byte;
+			}
 		}else{
 			tc++;
 			if(tc >= 10){

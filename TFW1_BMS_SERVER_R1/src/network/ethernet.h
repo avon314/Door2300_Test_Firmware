@@ -83,7 +83,7 @@ extern Dflt_Gtwy DfltGtwy;
 
 void init_ethernet(void);
 void status_callback(struct netif *netif);
-void ethernet_task(void);
+
 
 /// @cond 0
 /**INDENT-OFF**/

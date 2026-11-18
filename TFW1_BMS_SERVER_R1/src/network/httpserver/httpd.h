@@ -34,6 +34,7 @@
 #ifndef __HTTPD_H__
 #define __HTTPD_H__
 
-void httpd_init(void);
+/* Port-502 firmware-update server task (netconn API, FreeRTOS). */
+void Firmware_Server_Task(void *pvParameters);
 
 #endif /* __HTTPD_H__ */

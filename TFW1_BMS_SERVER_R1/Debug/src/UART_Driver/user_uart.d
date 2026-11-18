@@ -176,11 +176,29 @@ src/UART_Driver/user_uart.d src/UART_Driver/user_uart.o: \
  ../src/ASF/sam/drivers/wdt/wdt.h \
  ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/sio.h \
  ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/tcpip.h \
+ ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/api_msg.h \
+ ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/sys.h \
+ ../src/ASF/thirdparty/lwip/lwip-port-1.4.1/sam/include/arch/sys_arch.h \
+ ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/FreeRTOS.h \
+ ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/projdefs.h \
+ ../src/config/FreeRTOSConfig.h \
+ ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/portable.h \
+ ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/portable/gcc/sam_cm4f/portmacro.h \
+ ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/mpu_wrappers.h \
+ ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/task.h \
+ ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/list.h \
+ ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/queue.h \
+ ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/semphr.h \
+ ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/queue.h \
+ ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/api.h \
+ ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/netbuf.h \
+ ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/netifapi.h \
+ ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/timers.h \
  ../src/ASF/sam/drivers/pio/pio_handler.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\tgmath.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\math.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\complex.h \
- ../src/UART_Driver/user_uart.h
+ ../src/UART_Driver/user_uart.h ../src/Factory/factory_cmd.h
 
 ../src/asf.h:
 
@@ -552,6 +570,42 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 
 ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/tcpip.h:
 
+../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/api_msg.h:
+
+../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/sys.h:
+
+../src/ASF/thirdparty/lwip/lwip-port-1.4.1/sam/include/arch/sys_arch.h:
+
+../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/FreeRTOS.h:
+
+../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/projdefs.h:
+
+../src/config/FreeRTOSConfig.h:
+
+../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/portable.h:
+
+../src/ASF/thirdparty/freertos/freertos-7.3.0/source/portable/gcc/sam_cm4f/portmacro.h:
+
+../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/mpu_wrappers.h:
+
+../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/task.h:
+
+../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/list.h:
+
+../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/queue.h:
+
+../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/semphr.h:
+
+../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/queue.h:
+
+../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/api.h:
+
+../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/netbuf.h:
+
+../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/netifapi.h:
+
+../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/timers.h:
+
 ../src/ASF/sam/drivers/pio/pio_handler.h:
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\tgmath.h:
@@ -561,3 +615,5 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\complex.h:
 
 ../src/UART_Driver/user_uart.h:
+
+../src/Factory/factory_cmd.h:

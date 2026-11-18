@@ -48,9 +48,6 @@
 #include "sysclk.h"
 #include "conf_eth.h"
 
-#include "user_uart.h"
-uint8_t ping = 0;
-
 /** Network interface identifier. */
 #define IFNAME0								'e'
 #define IFNAME1								'n'
@@ -125,7 +122,7 @@ static struct gmac_device gs_gmac_dev;
 /**
  * MAC address to use.
  */
-static uint8_t gs_uc_mac_address[] =
+uint8_t gs_uc_mac_address[6] =
 {
 	ETHERNET_CONF_ETHADDR0,
 	ETHERNET_CONF_ETHADDR1,
@@ -269,6 +266,7 @@ static void gmac_tx_init(struct gmac_device *ps_gmac_dev)
 	gmac_set_tx_queue(GMAC, (uint32_t) &ps_gmac_dev->tx_desc[0]);
 }
 
+#include "user_uart.h"
 /**
  * \brief Initialize GMAC and PHY.
  *
@@ -362,7 +360,7 @@ static void gmac_low_level_init(struct netif *netif)
 		LWIP_DEBUGF(NETIF_DEBUG, ("gmac_low_level_init: auto negotiate ERROR!\n"));
 		return;
 	}
-
+	
 	/* Establish ethernet link. */
 	while (ethernet_phy_set_link(GMAC, BOARD_GMAC_PHY_ADDR, 1) != GMAC_OK) {
 		LWIP_DEBUGF(NETIF_DEBUG, ("gmac_low_level_init: set link ERROR!\n"));
@@ -542,108 +540,40 @@ static void gmac_task(void *pvParameters)
  *
  * \param netif the lwIP network interface structure for this ethernetif.
  */
-// void ethernetif_input(struct netif *netif)
-// {
-// 	struct eth_hdr *ethhdr;
-// 	struct pbuf *p;
-//
-// 	/* Move received packet into a new pbuf. */
-// 	p = gmac_low_level_input(netif);
-// 	if (p == NULL)
-// 		return;
-//
-// 	/* Points to packet payload, which starts with an Ethernet header. */
-// 	ethhdr = p->payload;
-//
-// 	switch (htons(ethhdr->type)) {
-// 		case ETHTYPE_IP:
-// 		case ETHTYPE_ARP:
-// #if PPPOE_SUPPORT
-// 		case ETHTYPE_PPPOEDISC:
-// 		case ETHTYPE_PPPOE:
-// #endif /* PPPOE_SUPPORT */
-// 			/* Send packet to lwIP for processing. */
-// 			if (netif->input(p, netif) != ERR_OK) {
-// 				LWIP_DEBUGF(NETIF_DEBUG, ("ethernetif_input: IP input error\n"));
-// 				/* Free buffer. */
-// 				pbuf_free(p);
-// 			}
-// 			break;
-//
-// 		default:
-// 			/* Free buffer. */
-// 			pbuf_free(p);
-// 			break;
-// 	}
-// }
-
 void ethernetif_input(struct netif *netif)
 {
 	struct eth_hdr *ethhdr;
-	struct ip_hdr *iphdr;
-	struct icmp_echo_hdr *icmphdr;
 	struct pbuf *p;
-
-
 
 	/* Move received packet into a new pbuf. */
 	p = gmac_low_level_input(netif);
 	if (p == NULL)
-	return;
+		return;
 
 	/* Points to packet payload, which starts with an Ethernet header. */
 	ethhdr = p->payload;
 
 	switch (htons(ethhdr->type)) {
 		case ETHTYPE_IP:
-		/* Process IP packets */
-		iphdr = (struct ip_hdr *)((char *)ethhdr + SIZEOF_ETH_HDR);
-
-		/* Check if it's ICMP protocol */
-		if (IPH_PROTO(iphdr) == IP_PROTO_ICMP) {
-			icmphdr = (struct icmp_echo_hdr *)((char *)iphdr + IP_HLEN);
-
-			/* Check if it's an Echo Request (Ping) */
-			if (ICMPH_TYPE(icmphdr) == ICMP_ECHO) {
-// 				printf("\nPing request received from %s\n", inet_ntoa(*(struct in_addr *)&iphdr->src));
-// 				// Send this message via UART
-// 				Print_Message("Ping request received via CMD\n");
-				ping++;
-			}
-			if (ping >= 4){
-				//printf("\nEthernet test is OK");
-				ping = 0;
-			}
-		}
-
-		/* Send packet to lwIP for processing */
-		if (netif->input(p, netif) != ERR_OK) {
-			LWIP_DEBUGF(NETIF_DEBUG, ("ethernetif_input: IP input error\n"));
-			/* Free buffer */
-			pbuf_free(p);
-		}
-		break;
-
 		case ETHTYPE_ARP:
-		#if PPPOE_SUPPORT
+#if PPPOE_SUPPORT
 		case ETHTYPE_PPPOEDISC:
 		case ETHTYPE_PPPOE:
-		#endif /* PPPOE_SUPPORT */
-		/* Send packet to lwIP for processing */
-		if (netif->input(p, netif) != ERR_OK) {
-			LWIP_DEBUGF(NETIF_DEBUG, ("ethernetif_input: ARP input error\n"));
-			/* Free buffer */
-			pbuf_free(p);
-		}
-		break;
+#endif /* PPPOE_SUPPORT */
+			/* Send packet to lwIP for processing. */
+			if (netif->input(p, netif) != ERR_OK) {
+				LWIP_DEBUGF(NETIF_DEBUG, ("ethernetif_input: IP input error\n"));
+				/* Free buffer. */
+				pbuf_free(p);
+			}
+			break;
 
 		default:
-		/* Free buffer for unsupported types */
-		pbuf_free(p);
-		break;
+			/* Free buffer. */
+			pbuf_free(p);
+			break;
 	}
 }
-
 
 /**
  * \brief Should be called at the beginning of the program to set up the

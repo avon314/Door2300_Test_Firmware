@@ -129,7 +129,17 @@ src/ASF/thirdparty/lwip/lwip-1.4.1/src/api/netbuf.d \
  ../src/ASF/common/utils/interrupt/interrupt_sam_nvic.h \
  ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/debug.h \
  ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/arch.h \
- ../src/ASF/thirdparty/lwip/lwip-port-1.4.1/sam/include/arch/cc.h
+ ../src/ASF/thirdparty/lwip/lwip-port-1.4.1/sam/include/arch/cc.h \
+ ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/netbuf.h \
+ ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/pbuf.h \
+ ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/err.h \
+ ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/ipv4/lwip/ip_addr.h \
+ ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/def.h \
+ ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/memp.h \
+ ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/memp_std.h \
+ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\string.h \
+ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\xlocale.h \
+ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\string.h
 
 ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/opt.h:
 
@@ -392,3 +402,23 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/arch.h:
 
 ../src/ASF/thirdparty/lwip/lwip-port-1.4.1/sam/include/arch/cc.h:
+
+../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/netbuf.h:
+
+../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/pbuf.h:
+
+../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/err.h:
+
+../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/ipv4/lwip/ip_addr.h:
+
+../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/def.h:
+
+../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/memp.h:
+
+../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/memp_std.h:
+
+c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\string.h:
+
+c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\xlocale.h:
+
+c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\sys\string.h:

@@ -54,9 +54,16 @@ SEARCH_DIR(.)
 
 MEMORY
 {
-  rom (rx)  : ORIGIN = 0x00450000, LENGTH = 0x00080000
+  rom (rx)  : ORIGIN = 0x00400000, LENGTH = 0x00080000   /* app: 0x00450000-0x004CFFFF (bootloader at 0x00400000) */
   ram (rwx) : ORIGIN = 0x20000000, LENGTH = 0x00020000
 }
+
+/* Reserved, NOT part of rom: TLS NV seed slots A/B (tls_platform.c), the last 8 KB
+ * of internal flash, 0x004FE000-0x004FFFFF (HTTPS porting guide, step 5).
+ * The bootloader writes a new image from 0x00450000 upward, so the image must
+ * stay inside the rom region above to leave the seed slots untouched. */
+__tls_seed_start__ = 0x004FE000;
+ASSERT(ORIGIN(rom) + LENGTH(rom) <= __tls_seed_start__, "rom region overlaps the TLS seed slots")
 
 /* The stack size used by the application. NOTE: you need to adjust according to your application. */
 __stack_size__ = DEFINED(__stack_size__) ? __stack_size__ : 0x3000;

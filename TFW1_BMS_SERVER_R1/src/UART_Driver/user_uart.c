@@ -24,6 +24,7 @@
 #include "tgmath.h"
 /***** User defined Includes *****/
 #include "user_uart.h"
+#include "factory_cmd.h"
 
 /***** Definations for Debug uart initializations *****/
 //#define	DEBUG_BAUDRATE				(9600)
@@ -472,6 +473,7 @@ void UART0_Handler(void)
 		gb_uart_byte_rec_f = uSET;	// Set this flag once received a single byte.
 		gb_uart_rec_byte = Local_data;
 //		Get_TimeDate_By_UART(Local_data);
+		Factory_Cmd_RxByte(Local_data);	// Factory commands (TLS seed); only buffers the line here.
 	}
 	else
 	{

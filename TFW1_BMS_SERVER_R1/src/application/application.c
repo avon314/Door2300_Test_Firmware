@@ -85,8 +85,7 @@ void Test_Func_Init(void){
 	RS485_Driver_Init();
 	//RS485_UART2_Init();
 	//RS485_Driver_2_Init();
-	init_ethernet();
-	httpd_init();
+	init_ethernet();	/* lwIP tcpip thread + GMAC task; the port-502 server is now Firmware_Server_Task (user_rtos.c) */
 	Print_Message("Welcome\n");
 	Get_RTC_Data_At_Every_Second();
 	EXT_EEPROM_Init() ;
@@ -94,6 +93,7 @@ void Test_Func_Init(void){
 //	EEPROM_Byte_Write(STATUS_FLAG_ADDRESS,&(x),1);
 	Read_IP_Adress_From_EEP1();
 	OFF_RED_LED;
+	Print_Message("\n Test_Func_Init Success ");
 }
 
 /*****************************************************************************

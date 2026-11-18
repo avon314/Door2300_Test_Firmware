@@ -132,6 +132,28 @@ src/ASF/thirdparty/lwip/lwip-1.4.1/src/core/lwip_timers_141.d \
  ../src/ASF/thirdparty/lwip/lwip-port-1.4.1/sam/include/arch/cc.h \
  ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/timers.h \
  ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/err.h \
+ ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/sys.h \
+ ../src/ASF/thirdparty/lwip/lwip-port-1.4.1/sam/include/arch/sys_arch.h \
+ ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/FreeRTOS.h \
+ ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/projdefs.h \
+ ../src/config/FreeRTOSConfig.h ../src/ASF/common/services/clock/sysclk.h \
+ ../src/config/conf_clock.h \
+ ../src/ASF/common/services/clock/sam4e/sysclk.h \
+ ../src/ASF/common/services/clock/osc.h \
+ ../src/ASF/common/services/clock/sam4e/osc.h \
+ ../src/ASF/common/boards/board.h \
+ ../src/ASF/sam/boards/sam4e_ek/sam4e_ek.h \
+ ../src/ASF/sam/utils/cmsis/sam4e/source/templates/exceptions.h \
+ ../src/ASF/sam/drivers/pmc/pmc.h ../src/ASF/common/services/clock/pll.h \
+ ../src/ASF/common/services/clock/sam4e/pll.h \
+ ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/portable.h \
+ ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/portable/gcc/sam_cm4f/portmacro.h \
+ ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/mpu_wrappers.h \
+ ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/task.h \
+ ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/list.h \
+ ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/queue.h \
+ ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/semphr.h \
+ ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/queue.h \
  ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/tcp_impl.h \
  ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/tcp.h \
  ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/mem.h \
@@ -144,13 +166,16 @@ src/ASF/thirdparty/lwip/lwip-1.4.1/src/core/lwip_timers_141.d \
  ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/memp.h \
  ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/memp_std.h \
  ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/tcpip.h \
+ ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/api_msg.h \
+ ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/ipv4/lwip/igmp.h \
+ ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/api.h \
+ ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/netbuf.h \
+ ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/netifapi.h \
  ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/ipv4/lwip/ip_frag.h \
  ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/netif/etharp.h \
  ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/dhcp.h \
  ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/ipv4/lwip/autoip.h \
- ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/ipv4/lwip/igmp.h \
- ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/dns.h \
- ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/sys.h
+ ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/dns.h
 
 ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/opt.h:
 
@@ -418,6 +443,54 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 
 ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/err.h:
 
+../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/sys.h:
+
+../src/ASF/thirdparty/lwip/lwip-port-1.4.1/sam/include/arch/sys_arch.h:
+
+../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/FreeRTOS.h:
+
+../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/projdefs.h:
+
+../src/config/FreeRTOSConfig.h:
+
+../src/ASF/common/services/clock/sysclk.h:
+
+../src/config/conf_clock.h:
+
+../src/ASF/common/services/clock/sam4e/sysclk.h:
+
+../src/ASF/common/services/clock/osc.h:
+
+../src/ASF/common/services/clock/sam4e/osc.h:
+
+../src/ASF/common/boards/board.h:
+
+../src/ASF/sam/boards/sam4e_ek/sam4e_ek.h:
+
+../src/ASF/sam/utils/cmsis/sam4e/source/templates/exceptions.h:
+
+../src/ASF/sam/drivers/pmc/pmc.h:
+
+../src/ASF/common/services/clock/pll.h:
+
+../src/ASF/common/services/clock/sam4e/pll.h:
+
+../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/portable.h:
+
+../src/ASF/thirdparty/freertos/freertos-7.3.0/source/portable/gcc/sam_cm4f/portmacro.h:
+
+../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/mpu_wrappers.h:
+
+../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/task.h:
+
+../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/list.h:
+
+../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/queue.h:
+
+../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/semphr.h:
+
+../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/queue.h:
+
 ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/tcp_impl.h:
 
 ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/tcp.h:
@@ -442,6 +515,16 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 
 ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/tcpip.h:
 
+../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/api_msg.h:
+
+../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/ipv4/lwip/igmp.h:
+
+../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/api.h:
+
+../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/netbuf.h:
+
+../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/netifapi.h:
+
 ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/ipv4/lwip/ip_frag.h:
 
 ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/netif/etharp.h:
@@ -450,8 +533,4 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 
 ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/ipv4/lwip/autoip.h:
 
-../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/ipv4/lwip/igmp.h:
-
 ../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/dns.h:
-
-../src/ASF/thirdparty/lwip/lwip-1.4.1/src/include/lwip/sys.h:

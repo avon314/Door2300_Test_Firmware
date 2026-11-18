@@ -37,8 +37,10 @@
 #include <stdio.h>
 #include <stdint.h>
 
-/* Define platform endianness */
+/* Define platform endianness (newlib may already define it, e.g. via <sys/time.h>) */
+#ifndef BYTE_ORDER
 #define BYTE_ORDER LITTLE_ENDIAN
+#endif
 
 /* Types based on stdint.h */
 typedef uint8_t            u8_t;

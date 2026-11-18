@@ -436,6 +436,10 @@
       <Value>ARM_MATH_CM4=true</Value>
       <Value>printf=iprintf</Value>
       <Value>__SAM4E16E__</Value>
+      <Value>__FREERTOS__</Value>
+      <Value>FREERTOS_USED=1</Value>
+      <Value>MBEDTLS_CONFIG_FILE=\"mm01_mbedtls_config.h\"</Value>
+      <Value>TF_PSA_CRYPTO_CONFIG_FILE=\"mm01_crypto_config.h\"</Value>
     </ListValues>
   </armgcc.compiler.symbols.DefSymbols>
   <armgcc.compiler.directories.IncludePaths>
@@ -480,6 +484,15 @@
       <Value>../src/ASF/common/services/spi/sam_spi</Value>
       <Value>../src/ASF/common/services/spi</Value>
       <Value>../src/ASF/sam/drivers/wdt</Value>
+      <Value>../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include</Value>
+      <Value>../src/ASF/thirdparty/freertos/freertos-7.3.0/source/portable/gcc/sam_cm4f</Value>
+      <Value>../src/RTOS</Value>
+      <Value>../src/Factory</Value>
+      <Value>../src/Int_Flash_Driver</Value>
+      <Value>../src/config/mbedtls</Value>
+      <Value>../../ThirdParty/mbedtls-4.1.1/include</Value>
+      <Value>../../ThirdParty/mbedtls-4.1.1/tf-psa-crypto/include</Value>
+      <Value>../../ThirdParty/mbedtls-4.1.1/tf-psa-crypto/drivers/builtin/include</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize for size (-Os)</armgcc.compiler.optimization.level>
@@ -491,11 +504,13 @@
     <ListValues>
       <Value>libarm_cortexM4lf_math_softfp</Value>
       <Value>libm</Value>
+      <Value>libmbedtls41</Value>
     </ListValues>
   </armgcc.linker.libraries.Libraries>
   <armgcc.linker.libraries.LibrarySearchPaths>
     <ListValues>
       <Value>../src/ASF/thirdparty/CMSIS/Lib/GCC</Value>
+      <Value>../../ThirdParty/mbedtls41/Release</Value>
     </ListValues>
   </armgcc.linker.libraries.LibrarySearchPaths>
   <armgcc.linker.optimization.GarbageCollectUnusedSections>True</armgcc.linker.optimization.GarbageCollectUnusedSections>
@@ -542,6 +557,15 @@
       <Value>../src/ASF/common/services/spi/sam_spi</Value>
       <Value>../src/ASF/common/services/spi</Value>
       <Value>../src/ASF/sam/drivers/wdt</Value>
+      <Value>../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include</Value>
+      <Value>../src/ASF/thirdparty/freertos/freertos-7.3.0/source/portable/gcc/sam_cm4f</Value>
+      <Value>../src/RTOS</Value>
+      <Value>../src/Factory</Value>
+      <Value>../src/Int_Flash_Driver</Value>
+      <Value>../src/config/mbedtls</Value>
+      <Value>../../ThirdParty/mbedtls-4.1.1/include</Value>
+      <Value>../../ThirdParty/mbedtls-4.1.1/tf-psa-crypto/include</Value>
+      <Value>../../ThirdParty/mbedtls-4.1.1/tf-psa-crypto/drivers/builtin/include</Value>
     </ListValues>
   </armgcc.assembler.general.IncludePaths>
   <armgcc.preprocessingassembler.general.AssemblerFlags>-DARM_MATH_CM4=true -DBOARD=SAM4E_EK -D__SAM4E16E__ -Dprintf=iprintf -Dscanf=iscanf</armgcc.preprocessingassembler.general.AssemblerFlags>
@@ -587,6 +611,15 @@
       <Value>../src/ASF/common/services/spi/sam_spi</Value>
       <Value>../src/ASF/common/services/spi</Value>
       <Value>../src/ASF/sam/drivers/wdt</Value>
+      <Value>../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include</Value>
+      <Value>../src/ASF/thirdparty/freertos/freertos-7.3.0/source/portable/gcc/sam_cm4f</Value>
+      <Value>../src/RTOS</Value>
+      <Value>../src/Factory</Value>
+      <Value>../src/Int_Flash_Driver</Value>
+      <Value>../src/config/mbedtls</Value>
+      <Value>../../ThirdParty/mbedtls-4.1.1/include</Value>
+      <Value>../../ThirdParty/mbedtls-4.1.1/tf-psa-crypto/include</Value>
+      <Value>../../ThirdParty/mbedtls-4.1.1/tf-psa-crypto/drivers/builtin/include</Value>
     </ListValues>
   </armgcc.preprocessingassembler.general.IncludePaths>
 </ArmGcc>
@@ -608,6 +641,10 @@
       <Value>ARM_MATH_CM4=true</Value>
       <Value>printf=iprintf</Value>
       <Value>__SAM4E16E__</Value>
+      <Value>__FREERTOS__</Value>
+      <Value>FREERTOS_USED=1</Value>
+      <Value>MBEDTLS_CONFIG_FILE=\"mm01_mbedtls_config.h\"</Value>
+      <Value>TF_PSA_CRYPTO_CONFIG_FILE=\"mm01_crypto_config.h\"</Value>
     </ListValues>
   </armgcc.compiler.symbols.DefSymbols>
   <armgcc.compiler.directories.IncludePaths>
@@ -669,6 +706,15 @@
       <Value>../src/Bootloader</Value>
       <Value>../src/EEPROM_Driver</Value>
       <Value>../src/Config_Eth_IP_Add</Value>
+      <Value>../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include</Value>
+      <Value>../src/ASF/thirdparty/freertos/freertos-7.3.0/source/portable/gcc/sam_cm4f</Value>
+      <Value>../src/RTOS</Value>
+      <Value>../src/Factory</Value>
+      <Value>../src/Int_Flash_Driver</Value>
+      <Value>../src/config/mbedtls</Value>
+      <Value>../../ThirdParty/mbedtls-4.1.1/include</Value>
+      <Value>../../ThirdParty/mbedtls-4.1.1/tf-psa-crypto/include</Value>
+      <Value>../../ThirdParty/mbedtls-4.1.1/tf-psa-crypto/drivers/builtin/include</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize (-O1)</armgcc.compiler.optimization.level>
@@ -681,16 +727,18 @@
     <ListValues>
       <Value>libarm_cortexM4lf_math_softfp</Value>
       <Value>libm</Value>
+      <Value>libmbedtls41</Value>
     </ListValues>
   </armgcc.linker.libraries.Libraries>
   <armgcc.linker.libraries.LibrarySearchPaths>
     <ListValues>
       <Value>../src/ASF/thirdparty/CMSIS/Lib/GCC</Value>
+      <Value>../../ThirdParty/mbedtls41/Debug</Value>
     </ListValues>
   </armgcc.linker.libraries.LibrarySearchPaths>
   <armgcc.linker.optimization.GarbageCollectUnusedSections>True</armgcc.linker.optimization.GarbageCollectUnusedSections>
   <armgcc.linker.memorysettings.ExternalRAM />
-  <armgcc.linker.miscellaneous.LinkerFlags>-Xlinker --defsym=STACK_SIZE=0x400 -T../src/ASF/sam/utils/linker_scripts/sam4e/sam4e16/gcc/flash.ld</armgcc.linker.miscellaneous.LinkerFlags>
+  <armgcc.linker.miscellaneous.LinkerFlags>-Xlinker --defsym=STACK_SIZE=0x400 -T../src/ASF/sam/utils/linker_scripts/sam4e/sam4e16/gcc/flash.ld -Wl,--wrap=psa_generate_key -Wl,--wrap=psa_export_public_key -Wl,--wrap=psa_raw_key_agreement -Wl,--wrap=psa_destroy_key</armgcc.linker.miscellaneous.LinkerFlags>
   <armgcc.assembler.general.IncludePaths>
     <ListValues>
       <Value>../src</Value>
@@ -733,6 +781,15 @@
       <Value>../src/ASF/common/services/spi/sam_spi</Value>
       <Value>../src/ASF/common/services/spi</Value>
       <Value>../src/ASF/sam/drivers/wdt</Value>
+      <Value>../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include</Value>
+      <Value>../src/ASF/thirdparty/freertos/freertos-7.3.0/source/portable/gcc/sam_cm4f</Value>
+      <Value>../src/RTOS</Value>
+      <Value>../src/Factory</Value>
+      <Value>../src/Int_Flash_Driver</Value>
+      <Value>../src/config/mbedtls</Value>
+      <Value>../../ThirdParty/mbedtls-4.1.1/include</Value>
+      <Value>../../ThirdParty/mbedtls-4.1.1/tf-psa-crypto/include</Value>
+      <Value>../../ThirdParty/mbedtls-4.1.1/tf-psa-crypto/drivers/builtin/include</Value>
     </ListValues>
   </armgcc.assembler.general.IncludePaths>
   <armgcc.assembler.debugging.DebugLevel>Default (-g)</armgcc.assembler.debugging.DebugLevel>
@@ -779,6 +836,15 @@
       <Value>../src/ASF/common/services/spi/sam_spi</Value>
       <Value>../src/ASF/common/services/spi</Value>
       <Value>../src/ASF/sam/drivers/wdt</Value>
+      <Value>../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include</Value>
+      <Value>../src/ASF/thirdparty/freertos/freertos-7.3.0/source/portable/gcc/sam_cm4f</Value>
+      <Value>../src/RTOS</Value>
+      <Value>../src/Factory</Value>
+      <Value>../src/Int_Flash_Driver</Value>
+      <Value>../src/config/mbedtls</Value>
+      <Value>../../ThirdParty/mbedtls-4.1.1/include</Value>
+      <Value>../../ThirdParty/mbedtls-4.1.1/tf-psa-crypto/include</Value>
+      <Value>../../ThirdParty/mbedtls-4.1.1/tf-psa-crypto/drivers/builtin/include</Value>
     </ListValues>
   </armgcc.preprocessingassembler.general.IncludePaths>
   <armgcc.preprocessingassembler.debugging.DebugLevel>Default (-Wa,-g)</armgcc.preprocessingassembler.debugging.DebugLevel>
@@ -788,6 +854,18 @@
   <ItemGroup>
     <Folder Include="Bootloader" />
     <Folder Include="src\" />
+    <Folder Include="src\RTOS\" />
+    <Folder Include="src\Factory\" />
+    <Folder Include="src\Int_Flash_Driver\" />
+    <Folder Include="src\config\mbedtls\" />
+    <Folder Include="src\ASF\thirdparty\freertos\" />
+    <Folder Include="src\ASF\thirdparty\freertos\freertos-7.3.0\" />
+    <Folder Include="src\ASF\thirdparty\freertos\freertos-7.3.0\source\" />
+    <Folder Include="src\ASF\thirdparty\freertos\freertos-7.3.0\source\include\" />
+    <Folder Include="src\ASF\thirdparty\freertos\freertos-7.3.0\source\portable\" />
+    <Folder Include="src\ASF\thirdparty\freertos\freertos-7.3.0\source\portable\gcc\" />
+    <Folder Include="src\ASF\thirdparty\freertos\freertos-7.3.0\source\portable\gcc\sam_cm4f\" />
+    <Folder Include="src\ASF\thirdparty\freertos\freertos-7.3.0\source\portable\memmang\" />
     <Folder Include="src\ASF\" />
     <Folder Include="src\ASF\common\" />
     <Folder Include="src\ASF\common\boards\" />
@@ -1892,6 +1970,99 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\network\tls_diag.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\ASF\thirdparty\freertos\freertos-7.3.0\source\list.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\ASF\thirdparty\freertos\freertos-7.3.0\source\queue.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\ASF\thirdparty\freertos\freertos-7.3.0\source\tasks.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\ASF\thirdparty\freertos\freertos-7.3.0\source\timers.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\ASF\thirdparty\freertos\freertos-7.3.0\source\portable\gcc\sam_cm4f\port.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\ASF\thirdparty\freertos\freertos-7.3.0\source\portable\memmang\heap_4.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\ASF\thirdparty\lwip\lwip-port-1.4.1\sam\sys_arch.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\RTOS\user_rtos.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\RTOS\user_rtos.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\RTOS\newlib_lock.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\RTOS\newlib_lock.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\Factory\factory_cmd.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\Factory\factory_cmd.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\Int_Flash_Driver\int_flash.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\Int_Flash_Driver\int_flash.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\network\https_client.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\network\https_client.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\network\tls_client.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\network\tls_client.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\network\tls_platform.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\network\tls_platform.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\network\net_xport.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\network\net_xport.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\network\url_parse.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\network\url_parse.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\network\tls_cfg_guard.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\config\conf_https.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\config\FreeRTOSConfig.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\config\mbedtls\mm01_mbedtls_config.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\config\mbedtls\mm01_crypto_config.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

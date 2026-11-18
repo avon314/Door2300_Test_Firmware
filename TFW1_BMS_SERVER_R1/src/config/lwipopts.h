@@ -44,17 +44,27 @@
 */
 
 /**
- * NO_SYS==1: Provides VERY minimal functionality. Otherwise,
- * use lwIP facilities.
- * Uses Raw API only.
+ * NO_SYS==0: threaded lwIP on FreeRTOS (tcpip thread + netconn API).
+ * Required by the HTTPS client (HTTPS porting guide, section 4: lwIP with
+ * LWIP_NETCONN=1, LWIP_DNS=1, LWIP_SO_RCVTIMEO=1). Raw-API calls are only
+ * allowed from the tcpip thread from now on; application code uses netconn.
  */
-#define NO_SYS                		1
+#define NO_SYS                		0
 
 /**
  * LWIP_NETIF_STATUS_CALLBACK==1: Support a callback function whenever an interface
  * changes its up/down status (i.e., due to DHCP IP acquistion)
  */
 #define LWIP_NETIF_STATUS_CALLBACK	1
+
+/** LWIP_DNS==1: DNS client, used by netconn_gethostbyname() for the server host. */
+#define LWIP_DNS                	1
+
+/** DNS server for the static-IP configuration (same as MM-01). */
+#define DNS_SERVER_ADDRESS(ipaddr)	(ip4_addr_set_u32(ipaddr, ipaddr_addr("8.8.8.8")))
+
+/** LWIP_SO_RCVTIMEO==1: netconn_set_recvtimeout(), used by the TLS BIO read timeout. */
+#define LWIP_SO_RCVTIMEO        	1
 
 /**
  * LWIP_RAW==1: Enable application layer to hook into the IP layer itself.
@@ -67,10 +77,10 @@
  * critical regions during buffer allocation, deallocation and memory
  * allocation and deallocation.
  */
-#define SYS_LIGHTWEIGHT_PROT        0
+#define SYS_LIGHTWEIGHT_PROT        1
 
-/* These are not available when using "NO_SYS" */
-#define LWIP_NETCONN            	0
+/* Sequential (netconn) API on; BSD sockets not used. */
+#define LWIP_NETCONN            	1
 #define LWIP_SOCKET             	0
 
 /* Uncomment following line to use DHCP instead of fixed IP */
@@ -93,20 +103,20 @@
  * MEM_SIZE: the size of the heap memory. If the application will send
  * a lot of data that needs to be copied, this should be set high.
  */
-#define MEM_SIZE                		4 * 1024
+#define MEM_SIZE                		8 * 1024	/* NETCONN_COPY writes: TLS records up to 2 KB + TCP_SND_BUF */
 
 /**
  * MEMP_NUM_UDP_PCB: the number of UDP protocol control blocks. One
  * per active UDP "connection".
  * (requires the LWIP_UDP option)
  */
-#define MEMP_NUM_UDP_PCB                1
+#define MEMP_NUM_UDP_PCB                2	/* DNS client */
 
 /**
  * MEMP_NUM_TCP_PCB: the number of simulatenously active TCP connections.
  * (requires the LWIP_TCP option)
  */
-#define MEMP_NUM_TCP_PCB                2
+#define MEMP_NUM_TCP_PCB                4	/* port-502 connection + HTTPS client + TIME_WAIT */
 
 /**
  * MEMP_NUM_TCP_PCB_LISTEN: the number of listening TCP connections.
@@ -140,24 +150,24 @@
  * If the application sends a lot of data out of ROM (or other static memory),
  * this should be set high.
  */
-#define MEMP_NUM_PBUF                   2
+#define MEMP_NUM_PBUF                   6
 
 /**
  * MEMP_NUM_NETBUF: the number of struct netbufs.
  * (only needed if you use the sequential API, like api_lib.c)
  */
-#define MEMP_NUM_NETBUF                 0
+#define MEMP_NUM_NETBUF                 4	/* netconn API */
 
 /**
  * MEMP_NUM_NETCONN: the number of struct netconns.
  * (only needed if you use the sequential API, like api_lib.c)
  */
-#define MEMP_NUM_NETCONN                0
+#define MEMP_NUM_NETCONN                4	/* listen + accepted + HTTPS client + spare */
 
 /**
  * PBUF_POOL_SIZE: the number of buffers in the pbuf pool.
  */
-#define PBUF_POOL_SIZE                  4
+#define PBUF_POOL_SIZE                  6	/* 2 x TCP_WND for two connections */
 
 /**
  * PBUF_POOL_BUFSIZE: the size of each pbuf in the pbuf pool.

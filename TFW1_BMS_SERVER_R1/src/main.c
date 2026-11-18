@@ -19,6 +19,12 @@
 * Version		: 1.0
 * Revision Date	: ----
 * Changes		: NA.
+*
+* Revision Date	: 16/11/2026
+* Changes		: HTTPS client (HTTPS porting guide, MM-01). The firmware now runs
+*				  on FreeRTOS 7.3 with threaded lwIP (netconn): the former
+*				  superloop is Test_Task(), the port-502 server is
+*				  Firmware_Server_Task() and the HTTPS POST is HTTPS_Client_Task().
 *****************************************************************************/
 
 
@@ -26,20 +32,51 @@
 #include "sysclk.h"
 #include "application.h"
 #include "defination.h"
+#include "FreeRTOS.h"
+#include "task.h"
+#include "user_rtos.h"
 
 //extern bool gb_connect_cmd_rec ;
 extern bool gb_start_timer ;
 extern bool gb_timer ;
 extern volatile uint16_t jsec ;
 
+/*****************************************************************************
+* Function name	: int main(void)
+* Description	: Initialises the clocks, board, peripherals and lwIP, creates
+*				  the tasks and starts the FreeRTOS scheduler.
+*****************************************************************************/
 int main(void)
 {
 	wdt_disable(WDT);							/* Disable watch-dog timer   */
 	 __enable_irq();
 	sysclk_init();								/* Initializing system-clock */
+	NVIC_SetPriorityGrouping(0);				/* All priority bits are preemption bits (FreeRTOS) */
 	board_init();								/* Initializing board */
-	Test_Func_Init();							/* Test Function Initialization */
-	
+	Test_Func_Init();							/* Test Function Initialization (also lwIP / tcpip thread) */
+
+	Create_Tasks();								/* Test, port-502 server and HTTPS client tasks */
+	vTaskStartScheduler();						/* Does not return */
+
+	/* Only reached if the FreeRTOS heap is too small for the idle task. */
+	Print_Message("\nvTaskStartScheduler failed: FreeRTOS heap too small.");
+	for (;;)
+	{
+	}
+}
+
+/*****************************************************************************
+* Function name	: void Test_Task(void *pvParameters)
+* Description	: The former main() superloop: UART test menu, RS485 channels,
+*				  inputs, boot timer. ethernet_task() is gone (the tcpip thread
+*				  and the GMAC task handle the network now).
+*****************************************************************************/
+void Test_Task(void *pvParameters)
+{
+	UNUSED(pvParameters);
+
+	/* (Moved from main(): Check_Boot_Command() waits for the port-502 boot
+	 *  command, so with the RTOS it must run inside a task.) */
 //	if(check_switch_press() == true)  // Check Switch Press
 //	{
 //		Check_Boot_Command() ;     // Check Boot Command For jump to Bootloader
@@ -48,10 +85,6 @@ int main(void)
 
 	while (1)
 	{
-		#if ETHERNET
-		ethernet_task();
-		#endif
-		
 		if(tc_flag)
 		{
 			if(ch_i > 0)
@@ -99,5 +132,7 @@ int main(void)
 			Run_Bootlodar() ;      // Jump into Bootloader
 
 		}
+
+		vTaskDelay(1);		/* let the lower-priority HTTPS client task run */
 	}
 }
