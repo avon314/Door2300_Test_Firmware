@@ -9,9 +9,11 @@
 *				  -DMBEDTLS_CONFIG_FILE="mm01_mbedtls_config.h". Anything not defined
 *				  here is OFF.
 *
-*				  Profile: TLS 1.2 client only, one cipher suite
-*				  (ECDHE-RSA-AES128-GCM-SHA256, RSA server certificates - changed
-*				  2026-11-16 from ECDHE-ECDSA for public test servers), ECDHE on
+*				  Profile: TLS 1.2 client only, two cipher suites
+*				  (ECDHE-ECDSA-AES128-GCM-SHA256 for ECDSA server certificates and
+*				  ECDHE-RSA-AES128-GCM-SHA256 for RSA ones; RSA added 2026-11-16,
+*				  both enabled 2026-11-18 so httpbin.org (RSA) and
+*				  echo.free.beeceptor.com (ECDSA) both work), ECDHE on
 *				  P-256, server not
 *				  authenticated (MBEDTLS_SSL_VERIFY_NONE, decision 2026-11-06).
 *
@@ -27,6 +29,7 @@
 #define MBEDTLS_SSL_TLS_C
 #define MBEDTLS_SSL_CLI_C
 #define MBEDTLS_SSL_PROTO_TLS1_2
+#define MBEDTLS_KEY_EXCHANGE_ECDHE_ECDSA_ENABLED /* ECDSA P-256 server certs (2026-11-18) */
 #define MBEDTLS_KEY_EXCHANGE_ECDHE_RSA_ENABLED   /* 2026-11-16: RSA server certs (public test servers) */
 
 /* ---- Certificates: needed to read the server's P-256 public key ---- */
@@ -44,8 +47,9 @@
 #define MBEDTLS_SSL_IN_CONTENT_LEN              16384   /* RSA chains are 4-5 KB and servers ignore MFL */
 #define MBEDTLS_SSL_OUT_CONTENT_LEN             2048
 
-/* ---- Only this suite is compiled in ---- */
-#define MBEDTLS_SSL_CIPHERSUITES                MBEDTLS_TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+/* ---- Only these suites are compiled in (keep in sync with s_suites in tls_client.c) ---- */
+#define MBEDTLS_SSL_CIPHERSUITES                MBEDTLS_TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256, \
+                                                MBEDTLS_TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
 
 /* ---- Development builds only ---- */
 #if defined(DEBUG)

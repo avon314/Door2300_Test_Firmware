@@ -1,10 +1,10 @@
 # libmbedtls41: prebuilt Mbed TLS for TFW1_BMS_SERVER_R1
 
-`Debug/libmbedtls41.a` and `Release/libmbedtls41.a` are Mbed TLS 4.1.1 (`../mbedtls-4.1.1`) compiled at `-Os` for the Cortex-M4 (softfp, fpv4-sp-d16) with this configuration (profile B, ECDHE-RSA-AES128-GCM-SHA256):
+`Debug/libmbedtls41.a` and `Release/libmbedtls41.a` are Mbed TLS 4.1.1 (`../mbedtls-4.1.1`) compiled at `-Os` for the Cortex-M4 (softfp, fpv4-sp-d16) with this configuration (two suites: ECDHE-ECDSA-AES128-GCM-SHA256 and ECDHE-RSA-AES128-GCM-SHA256, so servers with either an ECDSA or an RSA certificate work; both enabled 2026-11-18):
 - `TFW1_BMS_SERVER_R1/src/config/mbedtls/mm01_mbedtls_config.h`
 - `TFW1_BMS_SERVER_R1/src/config/mbedtls/mm01_crypto_config.h`
 
-The libraries were copied unchanged from the MM-01 project (`feature/safety-input`, built 2026-11-16 15:33). The two config headers are identical copies of MM-01's, so the same libraries are valid here. The headers keep their `mm01_` names on purpose: they must stay byte-identical to the headers the library was built with.
+The libraries were first copied from the MM-01 project, then rebuilt here: on 2026-11-17 with the `ssl.h` patch below, and on 2026-11-18 with both cipher suites enabled. The config headers therefore no longer match MM-01's. They keep their `mm01_` names only so that the build scripts and include paths stay the same.
 
 The app project links the library from the folder that matches its configuration (`../../ThirdParty/mbedtls41/$(Configuration)`).
 
@@ -30,4 +30,4 @@ Run this from Git Bash:
 ```
 The script uses the Atmel Studio toolchain at its default install path. Set `ARM_GCC_BIN` to use a different one. A full build takes about 30 minutes per configuration. Then rebuild the app in Atmel Studio.
 
-**Guard:** if the app and library configurations don't match (for example a Debug app with the Release library, or an RSA app with an ECDSA library), the link fails with `undefined reference to mm_tls_cfg_guard_debug_rsa` (or `_release_rsa`, `_debug`, `_release`).
+**Guard:** if the app and library configurations don't match (for example a Debug app with the Release library, or an RSA app with an ECDSA library), the link fails with `undefined reference to mm_tls_cfg_guard_debug_rsa_ecdsa` (or `_release_rsa_ecdsa`; `_rsa` = RSA suite only, no suffix = ECDSA suite only).

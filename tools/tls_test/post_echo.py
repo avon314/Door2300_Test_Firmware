@@ -11,6 +11,7 @@ Device endpoint:  https://<PC-IP>:<port>/
 """
 import http.server
 import json
+import os
 import ssl
 import sys
 
@@ -46,6 +47,12 @@ ctx.maximum_version = ssl.TLSVersion.TLSv1_2
 ctx.set_ciphers("ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256")  # matches the srv.pem key type
 ctx.set_ecdh_curve("prime256v1")
 ctx.load_cert_chain("srv.pem", "srv.key")
+# Wireshark decryption: set SSLKEYLOGFILE=<path> before starting; the TLS session keys
+# are appended to that file (NSS key log format). Bench use only - the file decrypts
+# every captured session.
+if os.environ.get("SSLKEYLOGFILE"):
+    ctx.keylog_filename = os.environ["SSLKEYLOGFILE"]
+    print("TLS key log:", ctx.keylog_filename)
 
 srv = http.server.HTTPServer(("0.0.0.0", PORT), Handler)
 srv.socket = ctx.wrap_socket(srv.socket, server_side=True)

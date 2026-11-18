@@ -46,7 +46,7 @@
  * server uses an RSA certificate, which profile B (this build) supports. */
 #ifndef HTTPS_SERVER_ENDPOINT
 #if USE_HTTPS
-#define HTTPS_SERVER_ENDPOINT	"https://httpbin.org/post"
+#define HTTPS_SERVER_ENDPOINT	/*"https://httpbin.org/post"*/"https://echo.free.beeceptor.com/post"
 #else
 #define HTTPS_SERVER_ENDPOINT	"http://httpbin.org/post"
 #endif

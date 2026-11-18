@@ -54,7 +54,9 @@ static struct
 	portTickType	t_connect;					/* tick of TCP connect (diagnostics) */
 } s_io;
 
-static const int		s_suites[] = { MBEDTLS_TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, 0 };
+/* ECDSA first (smaller, faster certificates); RSA for servers with RSA certificates. */
+static const int		s_suites[] = { MBEDTLS_TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+									   MBEDTLS_TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, 0 };
 static const uint16_t	s_groups[] = { MBEDTLS_SSL_IANA_TLS_GROUP_SECP256R1,
 									   MBEDTLS_SSL_IANA_TLS_GROUP_NONE };
 
